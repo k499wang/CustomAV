@@ -3,8 +3,6 @@ import argparse
 from trieNode import Trie, insert_trie
 from utils import extract_strings
 import unittest
-
-
             
 def main():
     trie = Trie()
@@ -19,6 +17,7 @@ def main():
     matches = []
     
     strings = extract_strings(filename)
+    # print(strings)
 
     
     for string in strings:
@@ -26,6 +25,9 @@ def main():
         if match:
             matches.append(match)   
     
-    print(matches)
+    if matches:
+        print(f"WE FOUND MALWARE: {matches}")
+    else:
+        print("CLEANNN")
         
 main()
