@@ -1,6 +1,6 @@
 import unittest 
-from trieNode import Trie, insert_trie
-from utils import extract_strings
+from core.trieNode import Trie, insert_trie
+from core.utils import extract_strings
 
 
 class TestTrie(unittest.TestCase):
