@@ -17,7 +17,7 @@ def main():
     matches = []
     
     strings = extract_strings(filename)
-    # print(strings)
+    print(strings)
 
     
     for string in strings:
