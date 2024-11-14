@@ -38,19 +38,21 @@ class Trie:
     # Here, we are going to use a sliding window technique to search things for 
     def search_in_tree(self, text):
         matches = []
-        for i in range(len(text)):
-            j = i 
-            
+        l = 0
+        
+        for l in range(len(text)):
             curr = self.root # everytime, we want to go to the end
-            for j in range(len(text)-i):
+            for r in range(l, len(text)):
+                c = text[r]
+                if c not in curr.children:
+                    break
+                curr = curr.children[c]
                 
-                if text[j] not in curr.children:
-                    break
-                elif curr.isEndOfWord:
-                    matches.append(text[i:j])
-                    break
-                else:
-                    curr = curr.children[text[j]]
+                if curr.isEndOfWord:
+                    matches.append(text[l:r+1]) 
+                    l = r # sliding window!
+                    break 
+                    
         
         return matches
     
@@ -65,7 +67,7 @@ def insert_trie(trie, fileName):
     try:
         with open(fileName, "r") as i:
             for line in i: # we read this line by line
-                word = line.strip()
+                word = line.strip().lower()
                 trie.insert(word)
     except Exception as E:
         return False

@@ -10,17 +10,22 @@ def main():
     trie = Trie()
     
     insert_trie(trie, "strings.txt")
-    print(trie.search("MALWARE"))
     
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', "--filename",required=True)
     args = parser.parse_args()
     
     filename = args.filename
+    matches = []
     
     strings = extract_strings(filename)
-        
+
     
+    for string in strings:
+        match = trie.search_in_tree(string.strip().lower())
+        if match:
+            matches.append(match)   
     
+    print(matches)
         
 main()

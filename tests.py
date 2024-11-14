@@ -18,7 +18,7 @@ class TestTrie(unittest.TestCase):
         self.assertEqual(insert_trie(curr, "strings.txt"), True)
         
     def test_extract_strings(self):
-        self.assertEqual(extract_strings("strings.txt"), True)
+        self.assertNotEqual(extract_strings("strings.txt"), False)
         
         
         

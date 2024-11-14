@@ -12,5 +12,5 @@ def extract_strings(filename):
     except Exception as e:
         return False
     
-    return True
+    return strings
         
