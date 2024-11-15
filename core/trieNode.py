@@ -46,9 +46,9 @@ class Trie:
                 c = text[r]
                 if c not in curr.children:
                     break
-                curr = curr.children[c]
+                curr = curr.children[c] # remember the c key is the character, and the value is the TrieNode
                 
-                if curr.isEndOfWord:
+                if curr.isEndOfWord: # the c key has a node that is the term end, and that c = r, so we take all the charaacters form l to r inclusive!
                     matches.append(text[l:r+1]) 
                     l = r # sliding window!
                     break 

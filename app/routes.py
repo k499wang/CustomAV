@@ -9,6 +9,26 @@ anti = Blueprint('anti', __name__)
 def hello_world():
     return 'Hello, World!'
 
+@anti.route('/check_string', methods=["POST"])
+def check_string():
+    db = current_app.config['db']
+    trie = current_app.config['trie']
+    
+    data = request.get_json()
+    
+    if 'string' not in data:
+        return {'error': 'No string provided'}, 400
+    
+    string = data['string']
+    match = trie.search_in_tree(string.strip().lower())
+    
+    if match:
+        return {'result': match}, 201
+    
+    return {'result': None}, 200
+
+
+
 @anti.route('/check_file', methods=["POST"])
 def check_file():
     db = current_app.config['db']
