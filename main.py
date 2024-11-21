@@ -8,9 +8,7 @@ from core.utils import init
            
 def main():
     db, trie = init()
-    
     app = create_app(db, trie)
-    
     app.run(host='127.0.0.1', debug=True)
            
 main()         
