@@ -1,51 +1,91 @@
 # Introduction
-This project is a simple POC antivirus that has string searching and function hooking as it's features.
 
-# Functionality
+This project demonstrates a simple proof-of-concept (POC) antivirus system. The key features include:
 
-To run this antivirus, simply install the following packages
+- String Searching: Detects malicious strings by comparing them to a predefined list.
 
+- Function Hooking: Dynamically monitors and detects suspicious activities during runtime.
+
+# Getting Started
+
+### Installation
+
+To set up and run the antivirus, follow these steps:
+
+Install the required dependencies:
 ```
 pip install flask
 pip install binary2strings
 ```
-
-Then run the file in the root directory of the project
-
+Run the main program from the root directory:
 ```
 python3 main.py
 ```
+API Endpoints
 
-Then the following endpoitns will be available for you to upload any files/strings to check
+Once the program is running, the following endpoints will be available for use:
 
-```
-check_string
-check_file
-```
+- POST /check_string: Upload a string to check for malicious content.
 
-Note the compares the strings to all the strings in the strings.txt file in the root directory of the folder. Feel free to add any strings if you wish to test anything out.
+- POST /check_file: Upload a file to analyze its content.
 
-# Tests
+The system compares the provided input against a list of strings stored in the strings.txt file located in the root directory. You can modify or add new strings to this file to test additional scenarios.
 
-You can test a singular file using the `testFile.py` folder in the project. This uploads the file to the server and then injects a dll into the process to dynamically detect any malicious strings in the program.
+# Testing the Antivirus
 
-To do this, run:
+Using the testFile.py Script
 
-```
-testFile.py -f <filename>
-```
+A dedicated script, testFile.py, is provided to test the antivirus functionality. This script uploads a file to the server and injects a DLL into the process for runtime analysis.
 
-There are 3 files that I have already provided in the project for you to test:
+Running the Test Script
+
+Execute the script using the following command:
 
 ```
-testFile.py -f C2ImplantSrc.exe
-testFile.py -f BasicMally.exe
-testFile.py -f UnhookedMally.exe
+python3 testFile.py -f <filename>
+```
+Pre-Provided Test Files
+
+The project includes three test files to demonstrate different detection scenarios:
+
+- C2ImplantSrc.exe: Detected during file upload.
+
+The antivirus identifies malicious strings at the static analysis stage.
+
+- BasicMally.exe: Detected during runtime.
+
+The injected DLL detects malicious strings while the program is running.
+
+- UnhookedMally.exe: Not detected.
+
+This file uses unhooking to evade analysis, bypassing detection mechanisms.
+
+Example Commands
+
+```
+python3 testFile.py -f C2ImplantSrc.exe
+python3 testFile.py -f BasicMally.exe
+python3 testFile.py -f UnhookedMally.exe
 ```
 
-You will notice while running these files that the antivirus detects each file at different executions stages. C2ImplantSrc.exe being detected when the file is first uploaded to the server for checking, BasicMally.exe being detected during runtime from the inject dll, and UnhookMally.exe does not get detected at all. This is because each file employs different strategies and techniques to avoid analysis, and how these change how each file gets detected by the program.
+### How Detection Works
 
-For a basic rundown, The first file does not employ any special techniques at all, and follows the most basic structure that most malware in the wild have. Including dynamically allocating memory, copying the string to the memory space, and running some function. The second file uses Xor encryption to beat any static analysis, hence why it does not detected when strings are scanned against the file, but gets detected at runtime. The third file unhooks all the functions that have been hooked by the TestAvDLL.dll, hence rendering all the functionality useless.
+Each test file employs unique strategies to evade detection, showcasing the antivirus's strengths and limitations:
 
-The source code for all the malware and DLL can be found here:  https://github.com/k499wang/BasicMally, https://github.com/k499wang/TestAvDLL, https://github.com/k499wang/Injector.
+Static Analysis: Effective for files like C2ImplantSrc.exe with identifiable malicious strings.
 
+Dynamic Analysis: Detects runtime activities, as shown with BasicMally.exe.
+
+Evasion Techniques: Files like UnhookedMally.exe demonstrate the challenges of detecting sophisticated malware.
+
+# Additional Notes
+
+Ensure the strings.txt file contains relevant malicious strings for testing.
+
+Modify and expand the strings.txt file to explore different detection scenarios.
+
+Use the endpoints and test script to analyze both predefined and custom files or strings.
+
+# Conclusion
+
+This POC antivirus system provides a foundational framework for malware detection using static and dynamic analysis techniques. It can be further enhanced by incorporating more advanced detection mechanisms and expanding the test cases.#
