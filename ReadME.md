@@ -78,13 +78,13 @@ Dynamic Analysis: Detects runtime activities, as shown with BasicMally.exe.
 
 Evasion Techniques: Files like UnhookedMally.exe demonstrate the challenges of detecting sophisticated malware.
 
-# Additional Notes
+### Additional Notes
 
-Ensure the strings.txt file contains relevant malicious strings for testing.
+- Ensure the strings.txt file contains relevant malicious strings for testing.
 
-Modify and expand the strings.txt file to explore different detection scenarios.
+- Modify and expand the strings.txt file to explore different detection scenarios.
 
-Use the endpoints and test script to analyze both predefined and custom files or strings.
+- Use the endpoints and test script to analyze both predefined and custom files or strings.
 
 # Conclusion
 
