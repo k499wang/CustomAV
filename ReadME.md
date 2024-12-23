@@ -33,18 +33,18 @@ The system compares the provided input against a list of strings stored in the s
 
 # Testing the Antivirus
 
-Using the testFile.py Script
+### Using the testFile.py Script
 
 A dedicated script, testFile.py, is provided to test the antivirus functionality. This script uploads a file to the server and injects a DLL into the process for runtime analysis.
 
-Running the Test Script
+### Running the Test Script
 
 Execute the script using the following command:
 
 ```
 python3 testFile.py -f <filename>
 ```
-Pre-Provided Test Files
+### Pre-Provided Test Files
 
 The project includes three test files to demonstrate different detection scenarios:
 
