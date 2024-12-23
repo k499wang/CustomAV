@@ -88,4 +88,4 @@ Evasion Techniques: Files like UnhookedMally.exe demonstrate the challenges of d
 
 # Conclusion
 
-This POC antivirus system provides a foundational framework for malware detection using static and dynamic analysis techniques. It can be further enhanced by incorporating more advanced detection mechanisms and expanding the test cases.#
+This POC antivirus system provides a foundational framework for malware detection using static and dynamic analysis techniques. It can be further enhanced by incorporating more advanced detection mechanisms and expanding the test cases.
