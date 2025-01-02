@@ -21,7 +21,7 @@ Run the main program from the root directory:
 ```
 python3 main.py
 ```
-API Endpoints
+### API Endpoints
 
 Once the program is running, the following endpoints will be available for use:
 
@@ -29,17 +29,17 @@ Once the program is running, the following endpoints will be available for use:
 
 - POST /check_file: Upload a file to analyze its content.
 
-The system compares the provided input against a list of strings stored in the strings.txt file located in the root directory. You can modify or add new strings to this file to test additional scenarios.
+The system compares the provided input against a list of strings stored in the strings.txt file located in the root directory. You can modify or add new strings to this file to test additional strings.
 
 # Testing the Antivirus
 
 ### Using the testFile.py Script
 
-A dedicated script, testFile.py, is provided to test the antivirus functionality. This script uploads a file to the server and injects a DLL into the process for runtime analysis.
+A dedicated script, testFile.py, is provided to test the antivirus functionality. This script uploads a file to the server and injects a DLL into the process for runtime analysis. This works be starting a suspended process, injecting the dll into it, and resuming it to avoid any race conditions.
 
 ### Running the Test Script
 
-Execute the script using the following command:
+Execute the script using the following command(With the server running):
 
 ```
 python3 testFile.py -f <filename>
