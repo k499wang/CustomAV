@@ -97,7 +97,7 @@ The antivirus uses two primary techniques to detect malware:
 
 1. **Static Analysis**: During static analysis, the system scans the file for known malicious strings by comparing its content to the entries in strings.txt. This method is effective against simple malware that relies on signature-based detection.
 
-2.**Dynamic Analysis**: Dynamic analysis involves monitoring the behavior of running processes. If a file attempts to inject malicious code, manipulate system resources, or perform any suspicious activity, the system detects it in real-time via function hooking.
+2. **Dynamic Analysis**: Dynamic analysis involves monitoring the behavior of running processes. If a file attempts to inject malicious code, manipulate system resources, or perform any suspicious activity, the system detects it in real-time via function hooking.
 
 3. **Evasion Techniques**: Advanced malware often uses techniques like unhooking to bypass detection. Files like UnhookedMally.exe demonstrate these challenges, highlighting the need for more advanced detection methods.
 
