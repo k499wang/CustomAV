@@ -1,35 +1,58 @@
 # Introduction
 
-This project demonstrates a simple proof-of-concept (POC) antivirus system. The key features include:
+This project demonstrates a proof-of-concept (POC) antivirus system that combines static and dynamic analysis techniques to detect malware. The system aims to showcase both traditional signature-based detection (via string matching) and runtime detection (through function hooking). 
 
-- String Searching: Detects malicious strings by comparing them to a predefined list.
-
-- Function Hooking: Dynamically monitors and detects suspicious activities during runtime.
+- Static Analysis (String Searching): Compares uploaded strings or files against a predefined list of known malicious strings to identify threats at the file level.
+- Dynamic Analysis (Function Hooking): Monitors process execution in real-time to detect suspicious activities that emerge during runtime, such as code injection or system manipulation.
 
 # Getting Started
 
 ### Installation
 
-To set up and run the antivirus, follow these steps:
+Follow these simple steps to set up and run the antivirus system on your local machine.
 
-Install the required dependencies:
+1. Ensure you have Python 3.6+ installed. Then, install the necessary dependencies via pip:
+
 ```
 pip install flask
 pip install binary2strings
 ```
-Run the main program from the root directory:
+
+Once the dependencies are installed, run the main program using the following command from the root directory:
 ```
 python3 main.py
 ```
+The system will start a Flask server to handle the API endpoints.
+
+
+
 ### API Endpoints
 
-Once the program is running, the following endpoints will be available for use:
+#### POST /check_string
 
-- POST /check_string: Upload a string to check for malicious content.
+Upload a string to check it for malicious content. This performs a quick static analysis by matching the string against a list of known malicious signatures.
 
-- POST /check_file: Upload a file to analyze its content.
+```
+POST /check_string
+Content-Type: application/json
 
-The system compares the provided input against a list of strings stored in the strings.txt file located in the root directory. You can modify or add new strings to this file to test additional strings.
+{
+  "data": "example_malicious_string"
+}
+```
+
+#### POST /check_file: 
+
+Upload a file to be analyzed for malicious content. The system performs both static and dynamic analysis to detect threats in the file's content and behavior.
+
+```
+POST /check_file
+Content-Type: multipart/form-data
+
+File: <file_to_analyze.exe>
+```
+
+Both endpoints compare the provided input against the strings.txt file located in the root directory. You can modify or add new strings to this file for customized testing.
 
 # Testing the Antivirus
 
@@ -70,13 +93,14 @@ python3 testFile.py -f UnhookedMally.exe
 
 ### How Detection Works
 
-Each test file employs unique strategies to evade detection, showcasing the antivirus's strengths and limitations:
+The antivirus uses two primary techniques to detect malware:
 
-Static Analysis: Effective for files like C2ImplantSrc.exe with identifiable malicious strings.
+1. **Static Analysis**: During static analysis, the system scans the file for known malicious strings by comparing its content to the entries in strings.txt. This method is effective against simple malware that relies on signature-based detection.
 
-Dynamic Analysis: Detects runtime activities, as shown with BasicMally.exe.
+2.**Dynamic Analysis**: Dynamic analysis involves monitoring the behavior of running processes. If a file attempts to inject malicious code, manipulate system resources, or perform any suspicious activity, the system detects it in real-time via function hooking.
 
-Evasion Techniques: Files like UnhookedMally.exe demonstrate the challenges of detecting sophisticated malware.
+3. **Evasion Techniques**: Advanced malware often uses techniques like unhooking to bypass detection. Files like UnhookedMally.exe demonstrate these challenges, highlighting the need for more advanced detection methods.
+
 
 ### Additional Notes
 
